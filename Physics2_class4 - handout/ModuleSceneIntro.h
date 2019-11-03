@@ -36,6 +36,8 @@ public:
 	//SDL_Texture* Rflipper;
 	//SDL_Texture* bouncer;
 
+	SDL_Rect board_rect = { 0,0,480,800 };
+
 	uint bgm;
 	uint bonus_fx;
 	p2Point<int> ray;

@@ -1,4 +1,6 @@
 #include "Globals.h"
+#include <string>
+
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleSceneIntro.h"
@@ -6,6 +8,8 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePhysics.h"
+#include "ModuleFonts.h"
+
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -66,7 +70,7 @@ update_status ModuleSceneIntro::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 8.5));
+		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 12, b2_dynamicBody, 0.0f, 1.0f));
 		circles.getLast()->data->listener = this;
 	}
 
@@ -75,45 +79,66 @@ update_status ModuleSceneIntro::Update()
 		boxes.add(App->physics->CreateRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 100, 50));
 	}
 
+	App->renderer->Blit(background, 0, 0, &board_rect);
+
 	if(App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
 	{
 		// Pivot 0, 0
-		int rick_head[64] = {
-			14, 36,
-			42, 40,
-			40, 0,
-			75, 30,
-			88, 4,
-			94, 39,
-			111, 36,
-			104, 58,
-			107, 62,
-			117, 67,
-			109, 73,
-			110, 85,
-			106, 91,
-			109, 99,
-			103, 104,
-			100, 115,
-			106, 121,
-			103, 125,
-			98, 126,
-			95, 137,
-			83, 147,
-			67, 147,
-			53, 140,
-			46, 132,
-			34, 136,
-			38, 126,
-			23, 123,
-			30, 114,
-			10, 102,
-			29, 90,
-			0, 75,
-			30, 62
+		int rick_head[102] = {
+	500/2, 800/2,
+	500/2, 119/2,
+	0/2, 120/2,
+	0/2, 800/2,
+	0/2, 800/2,
+	0/2, 197/2,
+	60/2, 146/2,
+	60/2, 370/2,
+	15/2, 422/2,
+	15/2, 665/2,
+	150/2, 749/2,
+	150/2, 740/2,
+	30/2, 663/2,
+	20/2, 428/2,
+	30/2, 429/2,
+	25/2, 418/2,
+	50/2, 377/2,
+	70/2, 384/2,
+	70/2, 377/2,
+	60/2, 370/2,
+	60/2, 135/2,
+	90/2, 119/2,
+	130/2, 99/2,
+	280/2, 86/2,
+	221/2, 81/2,
+	260/2, 84/2,
+	302/2, 93/2,
+	341/2, 109/2,
+	374/2, 131/2,
+	405/2, 153/2,
+	433/2, 181/2,
+	455/2, 211/2,
+	477/2, 249/2,
+	486/2, 272/2,
+	487/2, 730/2,
+	476/2, 734/2,
+	480/2, 740/2,
+	480/2, 740/2,
+	487/2, 80 / 2,
+	450/2, 800/2,
+	455/2, 740/2,
+	466/2, 740/2,
+	463/2, 732/2,
+	455/2, 731/2,
+	453/2, 402/2,
+	443/2, 400/2,
+	446/2, 643/2,
+	329/2, 718/2,
+	333/2, 723/2,
+	445/2, 657/2,
+	45 / 2, 800 / 2
 		};
 
-		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 64));
+		ricks.add(App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 12, b2_dynamicBody, 0.0f));
 	}
 
 	// Prepare for raycast ------------------------------------------------------
