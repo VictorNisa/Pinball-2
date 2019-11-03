@@ -18,8 +18,11 @@ A tribute game created as a Physics-II project using Box2D adn SDL libraries. Th
 - Gameplay
 
     Left arrow - Left flipper
+    
     Right arrow - Right flipper
+    
     Down arrow - Use ball shooter
+    
 
 - Debugging
 
@@ -32,4 +35,5 @@ This game was inspired by 01smile's pinball, which you can play [using this link
 #### About the creators
 
 This tribute game was made by [Victor Nisa](https://github.com/VictorNisa) and [Marc San José](https://github.com/marcsjm19).
+
 While Marc focused on handouts implementation, Victor focused on ripping the assets and adding some structure modules
